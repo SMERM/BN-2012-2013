@@ -1,0 +1,14 @@
+DARWINARCH= -arch i386 -arch x86_64
+PDSUFFIX=pd_darwin
+CFLAGS=$(DARWINARCH) -c
+LDFLAGS=$(DARWINARCH) -bundle -undefined suppress -flat_namespace
+LD=$(CC)
+
+simplest.$(PDSUFFIX): simplest.o
+	$(LD) $(LDFLAGS) -o $@ $< -lm
+
+simplest.o: simplest.c
+	$(CC) $(CFLAGS) -o $@ $<
+
+clean:
+	$(RM) simplest.o simplest.$(PDSUFFIX)
