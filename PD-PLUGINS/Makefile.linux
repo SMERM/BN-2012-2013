@@ -9,4 +9,4 @@ simplest.o: simplest.c
 	$(CC) $(CFLAGS) -o $@ $<
 
 clean:
-	$(RM) simplest.o simplest.$(PDSUFFIX)
+	$(RM) simplest.o simplest.$(PDSUFFIX) *~
