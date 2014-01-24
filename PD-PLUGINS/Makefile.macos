@@ -1,14 +1,18 @@
-DARWINARCH= -arch i386 -arch x86_64
+TARGETS= simplest.$(PDSUFFIX) simplest_01.$(PDSUFFIX)
+OBJECTS= $(TARGETS:$(PDSUFFIX)=o)
+
+DARWINARCH= -fPIC -arch i386 -arch x86_64
 PDSUFFIX=pd_darwin
-CFLAGS=$(DARWINARCH) -c
+CFLAGS=$(DARWINARCH)
 LDFLAGS=$(DARWINARCH) -bundle -undefined suppress -flat_namespace
 LD=$(CC)
 
-simplest.$(PDSUFFIX): simplest.o
-	$(LD) $(LDFLAGS) -o $@ $< -lm
-
-simplest.o: simplest.c
-	$(CC) $(CFLAGS) -o $@ $<
+all: $(TARGETS)
 
 clean:
-	$(RM) simplest.o simplest.$(PDSUFFIX)
+	$(RM) $(OBJECTS) $(TARGETS)
+	
+.SUFFIXES: .$(PDSUFFIX) .o
+	
+%.$(PDSUFFIX): %.o
+	$(LD) $(LDFLAGS) -o $@ $< -lm

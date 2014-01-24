@@ -1,9 +1,6 @@
 /*
 //  Simplest.c
-//  
-//
 //  Created by Giuseppe Silvi on 10/01/14.
-//
 */
 
 #include <m_pd.h>
