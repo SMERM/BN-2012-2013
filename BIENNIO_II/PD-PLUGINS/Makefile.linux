@@ -1,0 +1,12 @@
+PDSUFFIX=pd_linux
+CFLAGS=-c
+LDFLAGS=--export-dynamic --shared
+
+simplest.$(PDSUFFIX): simplest.o
+	$(LD) $(LDFLAGS) -o $@ $< -lm
+
+simplest.o: simplest.c
+	$(CC) $(CFLAGS) -o $@ $<
+
+clean:
+	$(RM) simplest.o simplest.$(PDSUFFIX) *~
