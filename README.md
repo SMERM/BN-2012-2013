@@ -1,4 +1,4 @@
-Programmazione_Lezioni
+SMERM Repo 2013/2014
 ======================
 
-Appunti per le lezioni di Programmazione dello SMERM
+Materiale didattico diviso per anno e per linguaggio di programmazione.
