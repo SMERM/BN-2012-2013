@@ -1,4 +1,11 @@
-Programmazione_Lezioni
-======================
+Secondo Biennio
+===============
 
-Appunti per le lezioni di Programmazione dello SMERM
+#C
+Rudimenti di linguaggio C
+
+#PD plug-in
+Programmazione multipiattaforma di plug-in per PD
+
+##References
+Contenitore per dispense
