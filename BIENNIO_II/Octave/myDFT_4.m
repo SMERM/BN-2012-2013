@@ -24,27 +24,21 @@ asums = zeros(size(F));
 winsize=100;
 
 for (k=1:winsize)
-	anal = exp(-i*2*pi*F(k)*t);
-	siganal = anal.*y;
-	analsum = sum(siganal);
-	asums(k) = analsum;
-	YDFTmag(k) = (2*abs(analsum))/(dur*fc);
-	YDFTfasi(k) = arg(analsum)+pi/2;
+	sinanal = -sin(2*pi*F(k)*t);
+	sinbin = sinanal.*y;
+	cosanal = cos(2*pi**F(k)*t);
+	cosbin = cosanal.*y;
+	sinsum = sum(sinbin);
+	cossum = sum(cosbin);
+	sinsumnorm = (2*sinsum)/size(y,2);
+	cossumnorm = (2*cossum)/size(y,2);
+	YDFTmag(k) = sqrt((sinsumnorm**2)+(cossumnorm**2));
+	YDFTfasi(k) = atan2(sinsum, cossum);
 end
 
-subplot(2,1,1);	
 stem(F(1:winsize),YDFTmag(1:winsize));
-
-subplot(2,1,2);
-stem(F(1:winsize),YDFTfasi(1:winsize));
+YDFTfasi(10:12)
+YDFTfasi(30:32)
+YDFTfasi(50:52)	
 
 fasi
-
-asums(11)
-YDFTfasi(11)
-
-asums(31)
-YDFTfasi(31)
-
-asums(51)	
-YDFTfasi(51)		
