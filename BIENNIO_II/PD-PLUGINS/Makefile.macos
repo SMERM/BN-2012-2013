@@ -1,4 +1,5 @@
-TARGETS= simplest.$(PDSUFFIX) simplest_01.$(PDSUFFIX)
+TARGETS= simplest.$(PDSUFFIX) simplest_01.$(PDSUFFIX) mem_0.$(PDSUFFIX) \
+		 mem_1.$(PDSUFFIX)
 OBJECTS= $(TARGETS:$(PDSUFFIX)=o)
 
 DARWINARCH= -fPIC -arch i386 -arch x86_64
