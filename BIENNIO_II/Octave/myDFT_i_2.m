@@ -1,9 +1,9 @@
 fc = 44100;
-sync = 1/fc;
+sinc = 1/fc;
 
 dur = 1;
 
-t = [0:sync:dur-sync];
+t = [0:sinc:dur-sinc];
 amps = [0.8 0.3 0.1];
 freqs = [10 30 50];
 fasi = [0 pi/4 pi/3];

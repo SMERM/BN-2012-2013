@@ -1,9 +1,9 @@
 fc = 44100;
-sync = 1/fc;
+sinc = 1/fc;
 
 dur = 0.65;
 
-t = [0:sync:dur-sync];
+t = [0:sinc:dur-sinc];
 
 winsize = 1024;
 binsize = fc/winsize;
