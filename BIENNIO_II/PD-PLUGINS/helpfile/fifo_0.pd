@@ -1,0 +1,8 @@
+#N canvas 156 358 450 300 10;
+#X msg 53 33 bang;
+#X obj 102 179 print fifo_0;
+#X floatatom 125 72 5 0 0 0 - - -, f 5;
+#X obj 103 132 fifo_0 3;
+#X connect 0 0 3 0;
+#X connect 2 0 3 0;
+#X connect 3 0 1 0;

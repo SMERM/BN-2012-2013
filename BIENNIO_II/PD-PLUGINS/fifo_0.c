@@ -27,7 +27,7 @@ static void *fifo_0_constructor(t_symbol *s, t_int argc, t_atom argv[])
     istanza -> size = DEFAULT_FIFO_SIZE;
 
     if (argc > 0) {
-        istanza -> size = atom_getfloat (argv [0]);
+        istanza -> size = atom_getfloat (&argv [0]);
     }
     
     istanza -> memoria = getbytes (istanza -> size*sizeof(t_float));
@@ -42,28 +42,31 @@ static void fifo_0_destructor(t_fifo_0 *x)
     freebytes(x -> memoria, x -> size);
 }
 
-static void bang_callback(t_fifo_0 *istanza)
+
+static void bump(t_fifo_0 *istanza, t_float **pointer)
 {
-    outlet_float(istanza -> parent.ob_outlet, istanza -> memoria);
+post("prima %s: 0x%x, %s: 0x%x", "put", istanza -> put, "get", istanza -> get);
+    ++(*pointer);
+    if ((*pointer) > (istanza -> memoria + istanza -> size-1)) {
+        (*pointer) = istanza -> memoria;
+    }
+post("dopo %s: 0x%x, %s: 0x%x", "put", istanza -> put, "get", istanza -> get);
 }
 
-static void bump(t_float *pointer)
+static void bang_callback(t_fifo_0 *istanza)
 {
-    ++pointer;
-    
-    if (pointer > (istanza -> memoria + istanza -> size)) {
-        pointer = istanza -> memoria;
+    if (istanza -> get != istanza -> put) {
+        bump (istanza, &(istanza -> get));
     }
+    outlet_float(istanza -> parent.ob_outlet, *(istanza -> get));
 }
 
 static void float_callback(t_fifo_0 *istanza, t_floatarg f)
 {
+    bump (istanza, &(istanza -> put));
     *(istanza -> put) = f;
-    
-    bump (istanza -> put);
-
     if (istanza -> put == istanza -> get) {
-        bump (istanza -> get);
+        bump (istanza, &(istanza -> get));
     }
 }
 
@@ -77,7 +80,7 @@ void fifo_0_setup (void)
 	ritorna l'unica copia che ha oppure la crea */
 	
     fifo_0_class = class_new(gensym("fifo_0"),
-		fifo_0_constructor, fifo_0_destructor,
+		(t_newmethod) fifo_0_constructor, (t_method) fifo_0_destructor,
 		sizeof(t_fifo_0), CLASS_DEFAULT, A_GIMME, 0);
 
     class_addfloat(fifo_0_class, float_callback);
