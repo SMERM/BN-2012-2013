@@ -1,0 +1,8 @@
+#N canvas -862 246 450 300 10;
+#X obj 109 121 osc~ 1000;
+#X obj 114 220 dac~;
+#X obj 112 182 nop0~;
+#X floatatom 84 50 5 0 0 0 - - -, f 5;
+#X connect 0 0 2 0;
+#X connect 2 0 1 0;
+#X connect 3 0 0 0;
