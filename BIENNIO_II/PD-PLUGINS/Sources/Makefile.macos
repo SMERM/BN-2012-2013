@@ -3,7 +3,8 @@ TARGETS= simplest.$(PDSUFFIX) \
 		 mem_0.$(PDSUFFIX) \
 		 mem_1.$(PDSUFFIX) \
 		 fifo_0.$(PDSUFFIX) \
-		 nop_tilde_0.$(PDSUFFIX)
+		 nop_tilde_0.$(PDSUFFIX)\
+		 fdl_tilde.$(PDSUFFIX)
 		 
 OBJECTS= $(TARGETS:$(PDSUFFIX)=o)
 

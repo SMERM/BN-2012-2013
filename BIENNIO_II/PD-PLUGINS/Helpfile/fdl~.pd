@@ -1,0 +1,10 @@
+#N canvas 947 411 450 300 10;
+#X obj 83 68 delwrite~ ciccio 2316;
+#X obj 60 161 fdl~ ciccio;
+#X obj 62 21 osc~ 440;
+#X floatatom 163 107 5 0 0 0 - - -, f 5;
+#X obj 70 220 dac~;
+#X connect 1 0 4 0;
+#X connect 2 0 0 0;
+#X connect 2 0 4 0;
+#X connect 3 0 1 0;

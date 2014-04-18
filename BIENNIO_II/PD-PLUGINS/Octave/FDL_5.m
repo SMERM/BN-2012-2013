@@ -26,7 +26,13 @@ for didx=2:size(delayfun, 2)
 	fds=(delayfun(didx)*fc);
 	ids=floor(fds);
 	tau=fds-ids;
-	c=(1-tau)/(1+tau);
+
+	if (ids > 0)
+		c=(1-tau)/(1+tau);
+	else
+		c=0;
+	end
+
 	ccoefs(didx)=c;
 	ink=didx-ids;
 	Y(didx)=c*x(ink)+x(ink-1)-c*Y(didx-1);
@@ -34,8 +40,12 @@ end
 
 subplot(2, 1, 1)
 plot(t, x, t, Y)
-axis([0. 0.001])
+axis([0. 0.1])
 
 subplot(2, 1, 2)
 plot(t, ccoefs)
 axis([0.02 0.0325])
+
+% subplot(2, 1, 2)
+% plot(t, delayfun)
+%axis([0.02 0.0325])
