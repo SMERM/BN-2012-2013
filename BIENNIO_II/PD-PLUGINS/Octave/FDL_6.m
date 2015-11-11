@@ -24,7 +24,7 @@ ccoefs=zeros(size(x));
 
 epsl=1e-20;
 
-for didx=2                                                 :size(delayfun, 2)
+for didx=2:size(delayfun, 2)
 	fds=(delayfun(didx)*fc);
 	ids=floor(fds);
 	tau=fds-ids;
